@@ -79,10 +79,18 @@
                             <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
                             <div class="col-md-6">
                                 <div class="form-check form-check-inline" >
-                                    <input class="form-check-input @error('address') is-invalid @enderror" type="radio" value="male" name="gender" required>
+                                    
+                                    <input id="gender" class="form-check-input @error('gender') is-invalid @enderror" type="radio" value="male" name="gender">
                                     <label class="form-check-label" for="male">Male</label>
-                                    <input class="form-check-input @error('address') is-invalid @enderror" type="radio" value="female" name="gender" required>
+                                    
+                                    <input id="gender" class="form-check-input @error('gender') is-invalid @enderror" type="radio" value="female" name="gender" required>
                                     <label class="form-check-label" for="female">Female</label>
+                                    
+                                    @error('gender')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                     @enderror
                                 </div>
                             </div>
                          </div>

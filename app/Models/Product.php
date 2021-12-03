@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'category_id', 'keyboard_name', 'keyboard_price', 'description', 'keyboard_image'
+    ];
 }

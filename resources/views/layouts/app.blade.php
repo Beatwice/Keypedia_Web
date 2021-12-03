@@ -64,16 +64,21 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a href="/cart-index" class="dropdown-item">My Cart</a>
+                                    <a href="/view-transaction-history" class="dropdown-item">Transaction History</a>
+                                    <a href="" class="dropdown-item">Change Password</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
+                            </li>
+                            <li class="nav-item" style="color: rgba(0, 0, 0, 0.5); padding: 8px;">
+                                {{ date('D, d-M-Y')}}
                             </li>
                         @endguest
                     </ul>

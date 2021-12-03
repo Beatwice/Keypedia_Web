@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class TransactionDetail extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'category_name', 'category_image'
+        'transaction_id', 'product_id', 'quantity'
     ];
-    public function detail()
+    public function product()
     {
-        return $this->hasMany('App\Models\product');
+        return $this->belongsTo('App\Models\Product');
     }
 }

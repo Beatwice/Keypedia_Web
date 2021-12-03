@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\manager;
+use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class AddKeyboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view ('manager.add-keyboard', compact('categories'));
     }
 
     /**
@@ -33,9 +35,17 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        //
+        Product::create([
+            'category_id' => $request->category_id,
+            'keyboard_name' => $request->keyboard_name,
+            'keyboard_price' => $request->keyboard_price,
+            'description' => $request->description,
+            'keyboard_image' => $request->file('keyboard_image')->store('keyboard-images'),
+        ]);
+        return redirect('/add-keyboard');
     }
 
     /**
