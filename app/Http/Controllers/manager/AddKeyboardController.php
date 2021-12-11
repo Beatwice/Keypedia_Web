@@ -43,7 +43,7 @@ class AddKeyboardController extends Controller
             'keyboard_name' => $request->keyboard_name,
             'keyboard_price' => $request->keyboard_price,
             'description' => $request->description,
-            'keyboard_image' => $request->file('keyboard_image')->store('keyboard-images'),
+            'keyboard_image' => $request->file('keyboard_image')->store('keyboard-images','public'),
         ]);
         return redirect('/add-keyboard');
     }
