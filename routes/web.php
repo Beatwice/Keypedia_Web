@@ -10,6 +10,7 @@ use App\Http\Controllers\shop\CheckoutController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TransactionDetailController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\searchController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,8 +25,10 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [HomePageController::class, 'index']);
 Route::get('/view-keyboard/{id}', [ShowKeyboardController::class, 'index']);
 Route::get('/view-keyboard/detail/{id}', [ShowKeyboardController::class, 'viewDetail']);
+Route::get('/search/{id}',[ShowKeyboardController::class, 'searchPro'])->name('search');
 Route::get('/view-transaction-history', [TransactionController::class, 'index']);
 Route::get('/view-transaction-detail-history/{id}', [TransactionDetailController::class, 'index']);
+
 //cart
 Route::get('/cart-index',[CartController::class, 'index']);
 Route::post('/cart/store', [CartController::class, 'store']);

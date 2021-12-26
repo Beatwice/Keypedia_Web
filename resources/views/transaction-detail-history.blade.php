@@ -10,6 +10,7 @@
     <div>
         <div class="text-center">
             <h2><strong>Your Transaction History</strong></h2>
+            {{$transaction->created_at}}
         </div>
     </div>
     <div class="list-product">

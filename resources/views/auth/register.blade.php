@@ -83,7 +83,7 @@
                                     <input id="gender" class="form-check-input @error('gender') is-invalid @enderror" type="radio" value="male" name="gender">
                                     <label class="form-check-label" for="male">Male</label>
                                     
-                                    <input id="gender" class="form-check-input @error('gender') is-invalid @enderror" type="radio" value="female" name="gender" required>
+                                    <input id="gender" class="form-check-input @error('gender') is-invalid @enderror" type="radio" value="female" name="gender">
                                     <label class="form-check-label" for="female">Female</label>
                                     
                                     @error('gender')
