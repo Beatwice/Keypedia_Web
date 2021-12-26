@@ -90,6 +90,6 @@ class AddKeyboardController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+      
     }
 }
