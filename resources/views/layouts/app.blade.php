@@ -3,20 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    
     <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
+    
     <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -52,34 +45,55 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
-                                @endif
-
-                                <li class="nav-item" style="color: rgba(0, 0, 0, 0.5); padding: 8px;">
-                                    {{ date('D, d-M-Y')}}
-                                </li>
+                            @endif
+                            <li class="nav-item" style="color: rgba(0, 0, 0, 0.5); padding: 8px;">
+                                {{ date('D, d-M-Y')}}
+                            </li>
                         @else
-                        
-                                @if (Auth::user()->role == 'admin')
-                                    <h1>ADMIN..</h1>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Category
+                                </a>
 
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                @foreach ($categories as $category)
+                                    <a href="/view-keyboard/{{$category->id}}" class="dropdown-item">{{$category->category_name}}</a>
+                                @endforeach
+                                </div>
+                            </li>
+                            @if (Auth::user()->role == 'admin')
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        Admin
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a href="/add_keyboard" class="dropdown-item">Add Keyboard</a>
+                                        <a href="/" class="dropdown-item">Manage Category</a>
+                                        <a href="/change-password" class="dropdown-item">Change Password</a>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
                                         </form>
-                                @else 
+                                    </div>
+                                </li>
+                                <li class="nav-item" style="color: rgba(0, 0, 0, 0.5); padding: 8px;">
+                                    {{ date('D, d-M-Y')}}
+                                </li>
+                            @else 
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }}
+                                        User
                                     </a>
     
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         <a href="/cart-index" class="dropdown-item">My Cart</a>
                                         <a href="/view-transaction-history" class="dropdown-item">Transaction History</a>
-                                        <a href="" class="dropdown-item">Change Password</a>
+                                        <a href="/change-password" class="dropdown-item">Change Password</a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
@@ -93,13 +107,12 @@
                                 <li class="nav-item" style="color: rgba(0, 0, 0, 0.5); padding: 8px;">
                                     {{ date('D, d-M-Y')}}
                                 </li>
-                                @endif
+                            @endif
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
             @yield('content')
         </main>

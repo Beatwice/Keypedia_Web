@@ -16,22 +16,23 @@ class CategorySeeder extends Seeder
     {
         DB::table('categories')->insert([
             'category_name' => 'Key Keyboard - 87%',
-            'category_image' => 'storage/images/87.jpg'
+            'category_image' => 'images/87.jpg'
         ]);
         
         DB::table('categories')->insert([
             'category_name' => 'Key Keyboard - 60%',
-            'category_image' => 'storage/images/60.jpg'
+            'category_image' => 'images/60.jpg' 
         ]);
 
         DB::table('categories')->insert([
             'category_name' => 'Key Keyboard - Wireless',
-            'category_image' => 'storage/images/wireless.jpg'
+            'category_image' => 'images/wireless.jpg'
         ]);
 
         DB::table('categories')->insert([
             'category_name' => 'Key Keyboard - RGB',
-            'category_image' => 'storage/images/rgb.jpg'
+            'category_image' => 'images/rgb.jpg'
         ]);
+        
     }
 }

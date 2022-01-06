@@ -13,8 +13,7 @@ class CheckoutController extends Controller
     
     public function store()
     {
-        $carts = Cart::where('user_id', Auth::user()->id);
-        $cartsUser = $carts->get();
+        $cartsUser = Cart::where('user_id', Auth::user()->id)->get();
 
         $transaction = Transaction::create([
             'user_id' => Auth::user()->id
@@ -29,6 +28,5 @@ class CheckoutController extends Controller
         }
         Cart::where('user_id', Auth::user()->id)->delete();
         return redirect('/');
-
     }
 }

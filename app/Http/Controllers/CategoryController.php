@@ -12,9 +12,11 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function update_page($id)
     {
-        //
+        $category = Category::where('id',$id)->first();
+        $categories = Category::all();
+        return view('manager.update-category', compact('category','categories'));
     }
 
     /**
@@ -67,9 +69,21 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Category $category, $id)
     {
-        //
+        $request->validate([
+            'category_name' => 'required|min:5|unique:categories',
+            'category_image' => 'file|image'
+        ]);
+        $category = Category::where('id',$id)->first();
+        $category->category_name = $request->category_name;
+        if($request->category_image != NULL)
+        {
+            $category->category_image = $request->file('category_image')->store('images','public');
+        }
+        $category->save();
+        
+        return redirect('/');
     }
 
     /**
@@ -78,8 +92,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function delete(Category $category, $id)
     {
-        //
+        $category = Category::where('id',$id)->first();
+        $category->delete();
+        return redirect('/');
     }
 }
