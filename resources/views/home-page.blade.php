@@ -14,8 +14,7 @@
             @endif
         </div>
     </div>
-    <div class="d-flex justify-content-center">
-        <div class="row list-product">
+    <div class="row list-product">
             @foreach ($categories as $c)
                 <div class="col-lg-4 col-md-6 mb-1" style="text-align: center; ">
                     <div class="m-1 rounded shadow-lg p-3 mb-5">
@@ -39,7 +38,6 @@
                     </div>
                 </div>
             @endforeach
-        </div>
     </div>
 </div>
 @endsection
