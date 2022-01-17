@@ -34,6 +34,7 @@
                                 <a type="submit"><button class="btn btn-danger">delete</button></a>
                             </form>
                         </div> 
+                        
                         @endif
                     </div>
                 </div>
